@@ -1,0 +1,9 @@
+app/data/enron_clean.csv
+app/data/enron_cleaned_ML.csv
+app/data/enron_cleaned_reading.csv
+app/data/enron_raw.csv
+app/data/messages.csv
+app/static/images/sodfhjgpseirhfgop[.pdf
+__pycache__/*
+app/library/hdbscan_cache/joblib/hdbscan/hdbscan_/*
+venv/*

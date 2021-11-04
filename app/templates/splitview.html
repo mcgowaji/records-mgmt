@@ -1,0 +1,97 @@
+{% extends "base.html" %} {% block title %}SplitView- {% endblock %} {% block
+head %} {{ super() }}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://x3dom.org/download/dev/x3dom-full.js"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/neovis.js') }}"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/timeline2.js') }}"
+></script>
+<meta
+  id="datapath"
+  data-name="{{ url_for('data', path='/enron_embedding_sample.csv') }}"
+/>
+<meta
+  id="globepath"
+  data-name="{{ url_for('data', path='/CircleLinesSphereLatitude.x3d') }}"
+/>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/flyby.js') }}"
+></script>
+<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+<link
+  href="{{ url_for('static', path='/css/bubblechart.css') }}"
+  rel="stylesheet"
+/>
+
+{% endblock %} {% block page_content %}
+<script language="javascript">
+  function startAll() {
+    
+    drawNeovis();
+    drawTimeline2({{ timeline_results|safe }});
+    drawFlyby();
+  }
+</script>
+<body onload="startAll()">
+  <form class="searchbox" action="/splitview" method="post">
+    <input type="text" name="main" placeholder=" Search messages..." value="" />
+    <label for="sender">Sender: </label>
+    <input type="text" name="sender" placeholder=" From:" value="" />
+    <label for="receiver">Receiver: </label>
+    <input type="text" name="receiver" placeholder=" To:" value="" />
+    <label for="start-date">Start Date: </label>
+    <input
+      type="date"
+      id="start"
+      name="start-date"
+      value="1997-01-01"
+      min="1997-01-01"
+      max="2003-01-01"
+    />
+    <label for="end-date">End Date: </label>
+    <input
+      type="date"
+      id="start"
+      name="end-date"
+      value="2003-01-01"
+      min="1997-01-01"
+      max="2003-01-01"
+    />
+    <input type="submit" id="submit"/>
+  </form>
+
+  <div class="container-fluid">
+    <div class="grid-container">
+      <div>
+          <div class="scroll">
+            <table class="bodyTable">
+          <tbody>
+            {% for item in neo_results %}
+            <tr>
+              <td class="td-flexible"><a
+                class="hyperlink"
+                href="../doc/{{ item['messageId'] }}" 
+              >{{ item['summary'] }}</td>
+              {% else %}
+              <td class="hyperlink">No results found.</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      <div id="neoviz"></div>
+      <div id="timeLine"></div>
+      <div id="chartholder"></div>
+    </div>
+  </div>
+</body>
+
+{% endblock %}

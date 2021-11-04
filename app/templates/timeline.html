@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block title %}TimeLine - {% endblock %} {% block
+head %} {{ super() }}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/neo4j-driver"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link
+  href="{{ url_for('static', path='/css/mystyle.css') }}"
+  rel="stylesheet"
+/>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/timeline2.js') }}"
+></script>
+
+<script language="javascript">
+  $(document).ready(function() {
+    console.log('Ready!');
+    drawTimeline2({{ results|safe }});
+  });
+</script>
+{% endblock head %} {% block page_content %}
+<body>
+  <div class="formholder">
+    <form class="searchbox" action="/timeline" method="post">
+      <label for="sender">Sender: </label>
+      <input
+        type="text"
+        name="sender"
+        placeholder=" Search senders..."
+        value=""
+      />
+      <label for="receiver">Receiver: </label>
+      <input
+        type="text"
+        name="receiver"
+        placeholder=" Search receivers..."
+        value=""
+      />
+      <label for="start-date">Start Date: </label>
+      <input
+        type="date"
+        id="start"
+        name="start-date"
+        value="1997-01-01"
+        min="1997-01-01"
+        max="2003-01-01"
+      />
+      <label for="end-date">End Date: </label>
+      <input
+        type="date"
+        id="start"
+        name="end-date"
+        value="2003-01-01"
+        min="1997-01-01"
+        max="2003-01-01"
+      />
+      <input type="submit" id="submit" />
+    </form>
+    <div>
+      <ul class="legend">
+        <!-- <div class="lsquare"></div> -->
+        <li>Sent</li>
+        <div class="lsquare"></div>
+        <li>
+          <div class="lsquare"></div>
+          Received
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h1 id="header">TimeLine</h1>
+  <!-- <div class="container"> -->
+
+  <div id="timeLine"></div>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- </div> -->
+</body>
+{% endblock %}

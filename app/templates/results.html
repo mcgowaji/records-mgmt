@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %}{% endblock %} {% block page_content
+%} {% include 'include/sidebar.html' %}
+<h1>Enron Database</h1>
+
+{% if doc_body %}
+<table class="table" style="margin: 10px">
+  <thead class="thead-dark">
+    <th scope="col">Message</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ doc_body }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endif %} {% if results %} {% if query %}
+<h3>{{ total }} matches for "{{ query }}"</h3>
+{% endif %}
+<table class="table table-striped flexible">
+  <!-- table header -->
+  <thead class="thead-dark">
+    <tr>
+      {% for key in fields.values() %}
+      <th scope="col">{{ key }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <!-- table rows -->
+    {% for item in results %}
+    <tr>
+      <td class="td-flexible">{{ item['_source']['_Date']}}</td>
+      <td class="td-flexible">{{ item['_source']['_X-From']}}</td>
+      <td class="td-flexible">{{ item['_source']['_X-To']}}</td>
+
+      <td class="td-flexible subject">
+        <a
+          class="link-primary"
+          href="../doc/{{item['_source']['_Message-ID']}}"
+        >
+          {{ item['_source']['_Subject'] }}</a
+        >
+      </td>
+      {% if query %}
+      <td class="td-flexible">{{ item['_score']}}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %} {% endblock %} {% block scripts %} {{ super() }} {% endblock %}

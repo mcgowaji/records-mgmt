@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://x3dom.org/download/dev/x3dom-full.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-color@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-interpolate@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-scale-chromatic@3"></script>
+<script src="https://unpkg.com/d3fc@14.0.27/build/d3fc.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://livejs.com/live.js"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/flyby.js') }}"
+></script>
+
+<meta
+  id="datapath"
+  data-name="{{ url_for('data', path='/enron_embedding_sample.csv') }}"
+/>
+<meta
+  id="globepath"
+  data-name="{{ url_for('data', path='/CircleLinesSphereLatitude.x3d') }}"
+/>
+<meta
+  id="wordpath"
+  data-name="{{ url_for('data', path='/word_frequencies.csv') }}"
+/>
+<link rel="stylesheet" href="https://x3dom.org/download/dev/x3dom.css" />
+<link
+  href="{{ url_for('static', path='/css/bubblechart.css') }}"
+  rel="stylesheet"
+/>
+{% endblock head %} {% block page_content %}
+<body onload="drawFlyby()">
+  <div id="content-wrap">
+    <div id="topdiv">
+      <img
+        id="logo"
+        class="element"
+        src="{{ url_for('static', path='/images/logo_alpha.png') }}"
+      />
+      <div class="element">
+        <input
+          id="searchbar"
+          type="search"
+          placeholder=" Filter by keyword..."
+          onsearch="blink()"
+        />
+      </div>
+      <div id="triage" class="element">Incidents triaged: 0.</div>
+      <div id="colorbar" class="element"></div>
+    </div>
+    <div id="chartholder"></div>
+    <!-- <div id="bottomdiv"> -->
+    <div id="wordcloud" class="element">
+      <span id="wordcloudClose">x</span>
+    </div>
+    <div id="summary" class="element">
+      <span id="summaryClose">x</span>
+      <p class="sumText"></p>
+    </div>
+    <!-- </div> -->
+
+    <div>
+      <select
+        id="opts"
+        onchange="selectDept();"
+        onfocus="this.selectedIndex = 0;"
+      >
+        <option value="" disabled selected>-Select Department-</option>
+        <option value="1">ACO: Structures</option>
+        <option value="2">ACO: Mechanical</option>
+        <option value="3">ACO: Electrical</option>
+        <option value="4">ACO: Flying Qualities</option>
+        <option value="5">ACO: Performance</option>
+        <option value="6">ACO: Human Factors</option>
+        <option value="7">FSDO: Operations</option>
+        <option value="8">FSDO: Maintenance</option>
+        <option value="9">FSDO: Training</option>
+      </select>
+      <span id="optsClose">x</span>
+    </div>
+  </div>
+</body>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/lollipop.js') }}"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/colorbar.js') }}"
+></script>
+
+{% endblock %}

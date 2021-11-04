@@ -1,0 +1,291 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+#header {
+  display: flex; /* opt into the new box model */
+  justify-content: center; /* "align" */
+}
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+svg {
+  width: 100%;
+}
+
+#timeLine {
+  width: 100%;
+}
+
+.container-square {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.searchbox {
+  margin: 0px 10px;
+  max-width: 80%;
+}
+
+.searchbox input {
+  border-radius: 10px;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  /* max-width: 960px; */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  padding-top: 50px;
+}
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+#neoviz {
+  width: 100%;
+  height: 100%;
+  /* border-style: solid;
+  border-color: slategrey; */
+}
+
+.grid-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 4px;
+  background-color: slategray;
+  border-radius: 10px;
+}
+
+.grid-container div {
+  max-height: 41vh;
+  max-width: 50vw;
+  background-color: #fafafa;
+  /* bg to show i'm squarred or not ? */
+  /* background-image: linear-gradient( 45deg, transparent 50%, rgba(0, 0, 0, 0.5) 50%); */
+  padding: 20px;
+}
+
+.grid-container div {
+  display: grid;
+}
+
+.bodyTable {
+  background-color: #090206;
+}
+
+.table table-striped flexible {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------------------------------------------------
+    TIMELINE STYLE
+----------------------------------------------------- */
+
+.tooltip {
+  color: white;
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 38px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid black;
+  pointer-events: none;
+}
+
+path.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar text {
+  fill: #fff;
+  font: 10px sans-serif;
+}
+line.goal {
+  stroke: green;
+  stroke-width: 1px;
+}
+line {
+  stroke-width: 1px;
+}
+
+.legend {
+  display: flex;
+  float: right;
+  flex-direction: column;
+}
+
+.legend li {
+  height: 10%;
+  width: 80%;
+  list-style-type: none;
+  margin-left: 3em;
+}
+
+.legend :nth-child(1) {
+  background-color: darkorange;
+}
+
+.legend :nth-child(3) {
+  background-color: lightblue;
+}
+
+.lsquare {
+  width: 100%;
+  height: 80%;
+  background-color: black;
+  border: 1px solid #fafafa;
+}
+.formholder {
+  display: flex;
+}
+/* ---------------------------------------------------
+    MINITABLE STYLE
+----------------------------------------------------- */
+
+#page-wrap {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  overflow: auto;
+}
+
+.scroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.minitd {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.headerTable {
+  width: 100%;
+  height: 100%;
+}
+
+/* .table table-striped flexible td:hover {
+    background-color:grey;
+} */
+/* white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; */
+/* } */
+
+.bodyTable {
+  max-width: 100%;
+  max-height: 100%;
+  border: none;
+  table-layout: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.bodyTable tbody {
+  width: 100%;
+  height: 100%;
+}
+.bodyTable td {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+}
+
+.bodyTable tbody {
+  /* height: 30px; */
+  width: 100%;
+  height: 100%;
+}
+
+.bodyTable tbody tr {
+  /* height: 30px; */
+  overflow: hidden;
+  width: 100%;
+  height: 30px;
+}
+
+.td-flexible {
+  width: auto;
+  padding-left: 1em;
+}
+
+/* .td-flexible subject {
+    width: 50%;
+} */
+
+.td-flexible a:hover {
+  text-decoration: hover;
+}
+
+.hyperlink {
+  color: #e4bb4a;
+  font-weight: 200;
+  width: 100%;
+  height: 100%;
+}
+
+.hyperlink:link {
+  text-decoration: none;
+}
+
+.hyperlink:visited {
+  text-decoration: none;
+}
+
+.hyperlink:hover {
+  text-decoration: underline;
+  color: #e9f0c4;
+}
+
+.hyperlink:active {
+  text-decoration: underline;
+}

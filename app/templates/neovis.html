@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %}Network Graph - {% endblock %} {%
+block head %} {{ super() }}
+<!-- <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script> -->
+<script
+  type="text/javascript"
+  src="https://rawgit.com/johnymontana/neovis.js/master/dist/neovis.js"
+></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', path='/js/neovis.js') }}"
+></script>
+{% endblock head %} {% block page_content %}
+<body onload="drawNeovis()">
+  <div id="neoviz"></div>
+  <div>
+    <h3>Cypher query:</h3>
+
+    <textarea rows="4" cols="50" id="cypher">
+MATCH (a:person) RETURN a LIMIT 10;</textarea
+    ><br />
+
+    <input type="submit" value="Submit" id="reload" />
+  </div>
+
+  <!-- 
+    Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+    <input type="submit" value="Submit" id="reload">
+    <input type="submit" value="Stabilize" id="stabilize"> -->
+</body>
+<script>
+  $("#reload").click(function () {
+    var cypher = $("#cypher").val();
+    if (cypher.length > 3) {
+      drawNeovis(cypher);
+    } else {
+      console.log("reload");
+      neoviz.reload();
+    }
+  });
+</script>
+{% endblock %}
